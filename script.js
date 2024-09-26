@@ -51,16 +51,20 @@ function assessReadiness() {
 
     // House Size
     let houseSizeFactor;
-    if (inputs.houseSize < 20) {
-        houseSizeFactor = 0.4;
-        decisions.push({name: "Inadequate House Size", probability: probability * houseSizeFactor});
-    } else if (inputs.houseSize < 50) {
-        houseSizeFactor = 0.9;
-        decisions.push({name: "Adequate House Size", probability: probability * houseSizeFactor});
-    } else {
-        houseSizeFactor = 1;
-        decisions.push({name: "Very Adequate House Size", probability: probability * houseSizeFactor});
-    }
+
+if (inputs.houseSize < 10) {
+    houseSizeFactor = 0.4; // Very Low
+    decisions.push({name: "Very Low House Size", probability: probability * houseSizeFactor});
+} else if (inputs.houseSize < 20) {
+    houseSizeFactor = 0.6; // Low
+    decisions.push({name: "Low House Size", probability: probability * houseSizeFactor});
+} else if (inputs.houseSize < 50) {
+    houseSizeFactor = 0.9; // Adequate
+    decisions.push({name: "Adequate House Size", probability: probability * houseSizeFactor});
+} else {
+    houseSizeFactor = 1; // High
+    decisions.push({name: "High House Size", probability: probability * houseSizeFactor});
+}
     probability *= houseSizeFactor;
 
     // Caretaker Age
