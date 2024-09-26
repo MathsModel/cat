@@ -139,13 +139,13 @@ function assessReadiness() {
     // Final assessment
     let assessment = "";
     if (probability > 0.8) {
-        assessment = "Very Ready for cat ownership!";
+        assessment = "Very Ready for pet ownership!";
     } else if (probability > 0.6) {
-        assessment = "Probably Ready for cat ownership, but consider improving some factors.";
+        assessment = "Probably Ready for pet ownership, but consider improving some factors.";
     } else if (probability > 0.4) {
-        assessment = "You might want to reconsider or improve your situation before getting a cat.";
+        assessment = "You might want to reconsider or improve your situation before getting a pet.";
     } else {
-        assessment = "It's not recommended to get a cat at this time. Please address the key factors first.";
+        assessment = "It's not recommended to get a pet at this time. Please address the key factors first.";
     }
 
     document.getElementById('result').innerHTML = `Readiness Score: ${(probability * 100).toFixed(2)}%<br>${assessment}`;
