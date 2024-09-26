@@ -7,7 +7,7 @@ function assessReadiness() {
         caretakerAge: parseInt(document.getElementById('caretaker-age').value),
         healthStatus: parseFloat(document.getElementById('health-status').value),
         allergies: document.getElementById('allergies').value === 'yes',
-        otherPets: parseInt(document.getElementById('other-pets').value),
+        predatorOrPreyPets: parseInt(document.getElementById('other-pets').value),
         vetDistance: parseFloat(document.getElementById('vet-distance').value),
         caregivers: parseInt(document.getElementById('caregivers').value)
     };
@@ -101,6 +101,23 @@ function assessReadiness() {
     let allergyFactor = inputs.allergies ? 0.4 : 1;
     decisions.push({name: inputs.allergies ? "Has Allergies" : "No Allergies", probability: probability * allergyFactor});
     probability *= allergyFactor;
+
+    // Predator or Prey Pets
+    let predatorOrPreyPetsFactor;
+    if (inputs.predatorOrPreyPets > 4) {
+        predatorOrPreyPetsFactor = 0.4;
+        decisions.push({name: "Too Many", probability: probability * predatorOrPreyPetsFactor});
+    } else if (inputs.predatorOrPreyPets > 2) {
+        predatorOrPreyPetsFactor = 0.6;
+        decisions.push({name: "A Few", probability: probability * predatorOrPreyPetsFactor});
+    } else if (inputs.predatorOrPreyPets > 0) {
+        predatorOrPreyPetsFactor = 0.9;
+        decisions.push({name: "A little", probability: probability * predatorOrPreyPetsFactor});
+    } else {
+        predatorOrPreyPetsFactor = 1;
+        decisions.push({name: "None", probability: probability * predatorOrPreyPetsFactor});
+    }
+    probability *= healthFactor;
 
     // Vet Distance
     let vetDistanceFactor;
