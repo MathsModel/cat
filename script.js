@@ -124,10 +124,10 @@ function assessReadiness() {
 
     // External Caregivers
     let caregiverFactor;
-    if (inputs.caregivers < 1) {
+    if (inputs.caregivers <= 1) {
         caregiverFactor = 0.7;
         decisions.push({name: "Very Few Caregivers", probability: probability * caregiverFactor});
-    } else if (inputs.caregivers = 2) {
+    } else if (inputs.caregivers === 2) {
         caregiverFactor = 0.9;
         decisions.push({name: "Few Caregivers", probability: probability * caregiverFactor});
     } else {
